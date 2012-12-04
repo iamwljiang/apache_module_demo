@@ -1,0 +1,30 @@
+How to build:
+
+Change 'Makefile' 'APDIR' to you real install path
+
+If you Apache2 is first install,you change 'Makefile' like this:
+#CFLAGS+=-I$(APRDIR) -I$(APR_UTIL_DIR)
+If you Apache2 is not first install,you change 'Makefile' APRDIR 
+and apr-util dir pointer in you real location
+
+finished execute:make 
+
+How to install:
+make install
+
+How to config:
+copy below 5 lines append to your apache2 config file 'httpd.conf'
+LoadModule demo_module modules/mod_demo.so
+<Location /demo>
+demo_str "Hello"
+demo_int 12345
+</Location>
+
+How to test:
+1.use curl like this,'curl locahost/demo'
+you will see demo module response like:
+This is apache demo module
+Client ip:127.0.0.1
+demo str:Hello,demo int:12345
+
+2.use web brower ,input url "127.0.0.1/demo"
